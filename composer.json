@@ -1,0 +1,35 @@
+{
+    "name": "erickcomp/laravel-single-request-cache",
+    "description": "Provides a cache that only remains for the current request",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ErickComp\\SingleRequestCache\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Erick de Azevedo Lima"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "laravel/framework": "^11.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.4",
+        "phpunit/phpunit": "^11.3"
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --colors=always",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ErickComp\\SingleRequestCache\\Providers\\SingleRequestCacheServiceProvider"
+            ]
+        }
+    }
+}

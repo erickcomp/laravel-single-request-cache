@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="PHPUnit tests">
+  <testsuite name="/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/phpunit.xml" tests="3" assertions="4" errors="0" failures="1" skipped="0" time="106.114393">
+    <testsuite name="ErickComp Laravel Single Request Cache Test Suite" tests="3" assertions="4" errors="0" failures="1" skipped="0" time="106.114393">
+      <testsuite name="ErickComp\SingleRequestCache\Tests\CacheIsErasedBetweenRequestsTest" file="/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/tests/CacheIsErasedBetweenRequestsTest.php" tests="3" assertions="4" errors="0" failures="1" skipped="0" time="106.114393">
+        <testcase name="it_can_cache_a_value_during_a_request" file="/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/tests/CacheIsErasedBetweenRequestsTest.php" line="25" class="ErickComp\SingleRequestCache\Tests\CacheIsErasedBetweenRequestsTest" classname="ErickComp.SingleRequestCache.Tests.CacheIsErasedBetweenRequestsTest" assertions="1" time="0.074345"/>
+        <testcase name="it_can_erase_a_cache_value_during_a_request" file="/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/tests/CacheIsErasedBetweenRequestsTest.php" line="46" class="ErickComp\SingleRequestCache\Tests\CacheIsErasedBetweenRequestsTest" classname="ErickComp.SingleRequestCache.Tests.CacheIsErasedBetweenRequestsTest" assertions="1" time="106.024289"/>
+        <testcase name="it_does_not_persist_cache_between_requests" file="/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/tests/CacheIsErasedBetweenRequestsTest.php" line="68" class="ErickComp\SingleRequestCache\Tests\CacheIsErasedBetweenRequestsTest" classname="ErickComp.SingleRequestCache.Tests.CacheIsErasedBetweenRequestsTest" assertions="2" time="0.015758">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">ErickComp\SingleRequestCache\Tests\CacheIsErasedBetweenRequestsTest::it_does_not_persist_cache_between_requests
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+ '{\n
+-    "rri493ztbv": "sp5zyj7vbodqrymt2kwa"\n
++    "rri493ztbv": "dhhcn03myqe9zya6jf74"\n
+ }'
+
+/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/vendor/laravel/framework/src/Illuminate/Testing/AssertableJsonString.php:100
+/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:765
+/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/tests/CacheIsErasedBetweenRequestsTest.php:97</failure>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
