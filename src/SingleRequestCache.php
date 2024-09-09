@@ -7,6 +7,7 @@ use Illuminate\Cache\Repository;
 
 class SingleRequestCache
 {
+    public const HASH_ALGO = 'sha256';
     private Repository $cache;
 
     public function __construct(ArrayStore $arrayStore, Repository $repository)
@@ -17,128 +18,78 @@ class SingleRequestCache
 
     public function put(string $key, mixed $value): static
     {
-        $cached = $this->cache->get($key, []);
-        $cached['without'] = $value;
-
-        $this->cache->forever($key, $cached);
+        $this->cache->forever($key, $value);
 
         return $this;
     }
 
     public function get(string $key, mixed $default = null): mixed
     {
-        $cached = $this->cache->get($key, []);
+        return $this->cache->get($key, $default);
+    }
 
-        return $cached['without'] ?? $default;
+    public function has(string $key): bool
+    {
+        return $this->cache->has($key);
     }
 
     public function remember(string $key, \Closure $valueResolver): mixed
     {
-        $cached = $this->cache->get($key, []);
+        if (!$this->has($key)) {
+            $value = $valueResolver();
+            $this->put($key, $value);
 
-        if (!\array_key_exists('without', $cached)) {
-            $cached['without'] = $valueResolver();
-            $this->cache->forever($key, $cached);
+            return $value;
         }
 
-        return $cached['without'];
+        return $this->get($key);
     }
 
     public function forget(string $key): static
     {
-        $cached = $this->cache->get($key, []);
-        unset($cached['without']);
-
-        $this->cache->forever($key, $cached);
+        $this->cache->forget($key);
 
         return $this;
     }
 
-    /**
-     * 
-     *
-     * @return $this
-     */
     public function putWith(string $key, mixed $with, mixed $value): static
     {
-        $cached = $this->cache->get($key, []);
-
-        foreach ($cached as $withKey => $withValues) {
-            if ($withKey === 'without') {
-                continue;
-            }
-
-            if ($withValues['with'] === $with) {
-                $newCached = $cached;
-                $newCached[$withKey]['value'] = $value;
-
-                $this->cache->forever($key, $newCached);
-
-                return $this;
-            }
-        }
-
-        $cached[$key][] = ['with' => $with, 'value' => $value];
-
-        return $this;
+        return $this->put($this->keyFromKeyWithData($key, $with), $value);
     }
 
     public function getWith(string $key, mixed $with, mixed $default = null): mixed
     {
-        $cached = $this->cache->get($key, []);
+        return $this->get($this->keyFromKeyWithData($key, $with), $default);
+    }
 
-        foreach ($cached as $withKey => $withValues) {
-            if ($withKey === 'without') {
-                continue;
-            }
-
-            if ($withValues['with'] === $with) {
-                return $withValues['value'];
-            }
-        }
-
-        return $default;
+    public function hasWith(string $key, mixed $with): bool
+    {
+        return $this->has($this->keyFromKeyWithData($key, $with));
     }
 
     public function rememberWith(string $key, mixed $with, \Closure $valueResolver): mixed
     {
-        $cached = $this->cache->get($key, []);
-
-        foreach ($cached as $withKey => $withValues) {
-            if ($withKey === 'without') {
-                continue;
-            }
-
-            if ($withValues['with'] === $with) {
-                return $withValues['value'];
-            }
-        }
-
-        $value = $valueResolver();
-        $cached[$key][] = ['with' => $with, 'value' => $value];
-
-        return $value;
+        return $this->remember($this->keyFromKeyWithData($key, $with), $valueResolver);
     }
 
     public function forgetWith(string $key, mixed $with): static
     {
-        $cached = $this->cache->get($key, []);
+        return $this->forget($this->keyFromKeyWithData($key, $with));
+    }
 
-        foreach ($cached as $withKey => $withValues) {
-            if ($withKey === 'without') {
-                continue;
-            }
+    public function flush(): void
+    {
+        $this->cache->flush();
+    }
 
-            if ($withValues['with'] === $with) {
-                $newCached = $cached;
-                unset($newCached[$withKey]);
-
-                $this->cache->forever($key, $newCached);
-
-                return $this;
-            }
-        }
-
-        return $this;
+    protected function keyFromKeyWithData(string $key, mixed $with): string
+    {
+        return \hash(
+            static::HASH_ALGO,
+            \serialize([
+                'key' => $key,
+                'with' => $with
+            ])
+        );
     }
 }

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Facade;
  * @method public static mixed getWith(string $key, mixed $with, mixed $default = null)
  * @method public static mixed rememberWith(string $key, mixed $with, \Closure $valueResolver)
  * @method public static SingleRequestCacheClass forgetWith(string $key, mixed $with)
+ * @method public static void flush()
  */
 class SingleRequestCache extends Facade
 {

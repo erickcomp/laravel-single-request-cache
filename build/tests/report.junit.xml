@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites name="PHPUnit tests">
-  <testsuite name="/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/phpunit.xml" tests="3" assertions="4" errors="0" failures="1" skipped="0" time="106.114393">
-    <testsuite name="ErickComp Laravel Single Request Cache Test Suite" tests="3" assertions="4" errors="0" failures="1" skipped="0" time="106.114393">
-      <testsuite name="ErickComp\SingleRequestCache\Tests\CacheIsErasedBetweenRequestsTest" file="/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/tests/CacheIsErasedBetweenRequestsTest.php" tests="3" assertions="4" errors="0" failures="1" skipped="0" time="106.114393">
-        <testcase name="it_can_cache_a_value_during_a_request" file="/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/tests/CacheIsErasedBetweenRequestsTest.php" line="25" class="ErickComp\SingleRequestCache\Tests\CacheIsErasedBetweenRequestsTest" classname="ErickComp.SingleRequestCache.Tests.CacheIsErasedBetweenRequestsTest" assertions="1" time="0.074345"/>
-        <testcase name="it_can_erase_a_cache_value_during_a_request" file="/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/tests/CacheIsErasedBetweenRequestsTest.php" line="46" class="ErickComp\SingleRequestCache\Tests\CacheIsErasedBetweenRequestsTest" classname="ErickComp.SingleRequestCache.Tests.CacheIsErasedBetweenRequestsTest" assertions="1" time="106.024289"/>
-        <testcase name="it_does_not_persist_cache_between_requests" file="/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/tests/CacheIsErasedBetweenRequestsTest.php" line="68" class="ErickComp\SingleRequestCache\Tests\CacheIsErasedBetweenRequestsTest" classname="ErickComp.SingleRequestCache.Tests.CacheIsErasedBetweenRequestsTest" assertions="2" time="0.015758">
-          <failure type="PHPUnit\Framework\ExpectationFailedException">ErickComp\SingleRequestCache\Tests\CacheIsErasedBetweenRequestsTest::it_does_not_persist_cache_between_requests
-Failed asserting that two strings are equal.
---- Expected
-+++ Actual
-@@ @@
- '{\n
--    "rri493ztbv": "sp5zyj7vbodqrymt2kwa"\n
-+    "rri493ztbv": "dhhcn03myqe9zya6jf74"\n
- }'
-
-/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/vendor/laravel/framework/src/Illuminate/Testing/AssertableJsonString.php:100
-/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/vendor/laravel/framework/src/Illuminate/Testing/TestResponse.php:765
-/var/www/html/laravel-11-vanilla/local-packages/erickcomp-laravel-single-request-cache/tests/CacheIsErasedBetweenRequestsTest.php:97</failure>
-        </testcase>
+  <testsuite name="/var/www/html/erickcomp-laravel-single-request-cache/phpunit.xml" tests="7" assertions="18" errors="0" failures="0" skipped="0" time="0.354503">
+    <testsuite name="ErickComp Laravel Single Request Cache Test Suite" tests="7" assertions="18" errors="0" failures="0" skipped="0" time="0.354503">
+      <testsuite name="ErickComp\SingleRequestCache\Tests\Test" file="/var/www/html/erickcomp-laravel-single-request-cache/tests/Test.php" tests="7" assertions="18" errors="0" failures="0" skipped="0" time="0.354503">
+        <testcase name="t01_it_can_erase_all_items_from_cache" file="/var/www/html/erickcomp-laravel-single-request-cache/tests/Test.php" line="23" class="ErickComp\SingleRequestCache\Tests\Test" classname="ErickComp.SingleRequestCache.Tests.Test" assertions="6" time="0.185435"/>
+        <testcase name="t02_it_can_cache_and_retrieve_a_simple_value" file="/var/www/html/erickcomp-laravel-single-request-cache/tests/Test.php" line="43" class="ErickComp\SingleRequestCache\Tests\Test" classname="ErickComp.SingleRequestCache.Tests.Test" assertions="1" time="0.026703"/>
+        <testcase name="t03_it_can_check_if_an_item_exists_in_cache" file="/var/www/html/erickcomp-laravel-single-request-cache/tests/Test.php" line="56" class="ErickComp\SingleRequestCache\Tests\Test" classname="ErickComp.SingleRequestCache.Tests.Test" assertions="2" time="0.028021"/>
+        <testcase name="t04_it_can_remember_an_item" file="/var/www/html/erickcomp-laravel-single-request-cache/tests/Test.php" line="67" class="ErickComp\SingleRequestCache\Tests\Test" classname="ErickComp.SingleRequestCache.Tests.Test" assertions="3" time="0.028473"/>
+        <testcase name="t05_it_can_cache_and_retrieve_a_value_with_data" file="/var/www/html/erickcomp-laravel-single-request-cache/tests/Test.php" line="79" class="ErickComp\SingleRequestCache\Tests\Test" classname="ErickComp.SingleRequestCache.Tests.Test" assertions="1" time="0.027858"/>
+        <testcase name="t06_it_can_check_if_an_item_with_data_exists_in_cache" file="/var/www/html/erickcomp-laravel-single-request-cache/tests/Test.php" line="92" class="ErickComp\SingleRequestCache\Tests\Test" classname="ErickComp.SingleRequestCache.Tests.Test" assertions="2" time="0.028804"/>
+        <testcase name="t07_it_can_remember_an_item_with_data" file="/var/www/html/erickcomp-laravel-single-request-cache/tests/Test.php" line="103" class="ErickComp\SingleRequestCache\Tests\Test" classname="ErickComp.SingleRequestCache.Tests.Test" assertions="3" time="0.029209"/>
       </testsuite>
     </testsuite>
   </testsuite>

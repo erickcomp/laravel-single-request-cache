@@ -15,6 +15,11 @@
             <directory>tests</directory>
         </testsuite>
     </testsuites>
+    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
+        <include>
+            <directory>./src</directory>
+        </include>
+    </source>
     <coverage>
         <include>
             <directory suffix=".php">./src</directory>
@@ -23,9 +28,9 @@
             <directory suffix=".blade.php">./src</directory>
         </exclude>
         <report>
-            <html outputDirectory="build/tests/coverage"/>
-            <text outputFile="build/tests/coverage.txt"/>
-            <clover outputFile="build/tests/logs/clover.xml"/>
+            <html outputDirectory="tests/build/tests/coverage"/>
+            <text outputFile="tests/build/tests/coverage.txt"/>
+            <clover outputFile="tests/build/tests/logs/clover.xml"/>
         </report>
     </coverage>
     <logging>
